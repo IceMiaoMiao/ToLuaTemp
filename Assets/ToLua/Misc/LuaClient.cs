@@ -37,7 +37,7 @@ public class LuaClient : MonoBehaviour
         protected set;
     }
 
-    protected LuaState luaState = null;
+    public LuaState luaState = null;
     protected LuaLooper loop = null;
     protected LuaFunction levelLoaded = null;
 
@@ -141,6 +141,15 @@ public class LuaClient : MonoBehaviour
         luaState.DoFile("Main.lua");
         levelLoaded = luaState.GetFunction("OnLevelWasLoaded");
         CallMain();
+    }
+
+    public virtual void CallFunc(string func, GameObject obj)
+    {
+        LuaFunction luaFunction = luaState.GetFunction(func);
+        luaFunction.Call(obj);
+        luaFunction.Dispose();
+        luaFunction = null;
+        
     }
 
     protected void StartLooper()
