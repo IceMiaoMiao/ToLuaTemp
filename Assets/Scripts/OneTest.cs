@@ -11,4 +11,11 @@ public class OneTest : MonoBehaviour
         LuaManager.Instance.LuaClient.luaState.DoFile("TestOne.lua");
         LuaManager.Instance.LuaClient.CallFunc("TestOne.Awake",this.gameObject);
     }
+
+    private void Update()
+    {
+        LuaManager.Instance.LuaClient.CallFunc("TestOne.Update",gameObject);
+        
+    }
+    
 }

@@ -3,10 +3,25 @@
 --- Created by guo23.
 --- DateTime: 2023/4/3 21:25
 ---
+---
 TestOne = {}
 local this = TestOne
 local manager
-function this.Awake()
+local cube
+local rigidbody
+local Input = UnityEngine.Input
+local KeyCode = UnityEngine.KeyCode
+
+
+function this.Awake(obj)
     print("Hello, Lua")
-    
+    cube = obj
+    rigidbody = cube : GetComponent('Rigidbody')
+end
+
+function this.Update()
+    if Input.GetKeyDown(KeyCode.Space) then
+        print("Get Space Button")
+        cube.transform.position = Vector3(1,1,1)
+    end
 end
